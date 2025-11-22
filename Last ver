@@ -79,11 +79,11 @@ fun task2()
     println("-----------------------------------------------------------------------------------------------------------------------------------")
 
     val matrix2 = arrayOf(
-            intArrayOf(5, 9, 6, 7, 2),
-            intArrayOf(9, 8, 4, 5, 3),
-            intArrayOf(6, 4, 3, 8, 7),
-            intArrayOf(7, 5, 8, 4, 8),
-            intArrayOf(2, 3, 7, 8, 1)
+        intArrayOf(5, 9, 6, 7, 2),
+        intArrayOf(9, 8, 4, 5, 3),
+        intArrayOf(6, 4, 3, 8, 7),
+        intArrayOf(7, 5, 8, 4, 8),
+        intArrayOf(2, 3, 7, 8, 1)
     )
 
     for (row in matrix2)
@@ -125,17 +125,17 @@ fun task3()
     println("Данная программа способна шифровать и дешифровать строковое выражение заданное пользователем")
     println("-----------------------------------------------------------------------------------------------------------------------------------")
     val alphabet = charArrayOf(
-            'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
-            'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т',
-            'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ',
-            'Э', 'Ю', 'Я'
+        'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ё', 'Ж', 'З', 'И',
+        'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С', 'Т',
+        'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ь', 'Ы', 'Ъ',
+        'Э', 'Ю', 'Я'
     )
 
     val position = intArrayOf(
-            21, 13, 4, 20, 22, 1, 25, 12, 24, 14,
-            2, 28, 9, 23, 3, 29, 6, 16, 15, 11,
-            26, 5, 30, 27, 8, 18, 10, 33, 31, 32,
-            19, 7, 17
+        21, 13, 4, 20, 22, 1, 25, 12, 24, 14,
+        2, 28, 9, 23, 3, 29, 6, 16, 15, 11,
+        26, 5, 30, 27, 8, 18, 10, 33, 31, 32,
+        19, 7, 17
     )
 
     val charToNumber = mutableMapOf<Char, Int>()
@@ -152,28 +152,28 @@ fun task3()
 
     fun encrypt(text: String, key: String, charToNumber: Map<Char, Int>, numberToChar: Map<Int, Char>): String
     {
-        val result = StringBuilder()
+        var result = ""
         for ((i, c) in text.withIndex())
         {
             val keyChar = key[i % key.length]
             val shift = charToNumber[keyChar]!!
             val originalNumber = charToNumber[c]!!
             val newNumber = (originalNumber + shift - 1) % 33 + 1
-            result.append(numberToChar[newNumber])
+            result += numberToChar[newNumber]
         }
         return result.toString()
     }
 
     fun decrypt(text: String, key: String, charToNumber: Map<Char, Int>, numberToChar: Map<Int, Char>): String
     {
-        val result = StringBuilder()
+        var result = ""
         for ((i, c) in text.withIndex())
         {
             val keyChar = key[i % key.length]
             val shift = charToNumber[keyChar]!!
             val encryptedNumber = charToNumber[c]!!
             val newNumber = (encryptedNumber - shift - 1 + 33) % 33 + 1
-            result.append(numberToChar[newNumber])
+            result += numberToChar[newNumber]
         }
         return result.toString()
     }
